@@ -3,12 +3,11 @@ import {
   InvokeModelCommand,
 } from "@aws-sdk/client-bedrock-runtime";
 
-const client = new BedrockRuntimeClient({ region: "us-west-2" });
+const client = new BedrockRuntimeClient({ region: "<YOUR_AWS_REGION>" });
 
 export async function POST(request) {
   const { ingredients, email } = await request.json();
 
-  const { ingredients, email } = await request.json();
   const prompt = `Generate a recipe using these ingredients: ${ingredients}.`;
   const modelId = "meta.llama3-1-8b-instruct-v1:0"
   try {
