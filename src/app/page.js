@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [ingredients, setIngredients] = useState('');
+  const [email, setEmail] = useState('');
   const [recipe, setRecipe] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -17,7 +18,7 @@ export default function Home() {
       const response = await fetch('/api/generate-recipe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ingredients }),
+        body: JSON.stringify({ ingredients, email }),
       });
       const data = await response.json();
       if (!response.ok) {
@@ -32,8 +33,15 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="mx-auto p-4 flex items-start flex-col space-y-4">
       <h1 className="text-2xl mb-4">Recipe Builder</h1>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter your email"
+        className="border p-2 mr-2 text-black"
+      />
       <input
         type="text"
         value={ingredients}

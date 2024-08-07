@@ -6,12 +6,12 @@ import {
 const client = new BedrockRuntimeClient({ region: "us-west-2" });
 
 export async function POST(request) {
-  const { ingredients } = await request.json();
+  const { ingredients, email } = await request.json();
 
   try {
     const prompt = `Generate a recipe using these ingredients: ${ingredients}.`;
     const input = {
-      modelId: "meta.llama3-1-405b-instruct-v1:0",
+      modelId: "meta.llama3-1-8b-instruct-v1:0",
       contentType: "application/json",
       accept: "application/json",
       body: JSON.stringify({
@@ -35,5 +35,6 @@ export async function POST(request) {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
+  } finally {
   }
 }
