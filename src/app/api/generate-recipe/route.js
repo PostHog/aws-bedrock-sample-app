@@ -8,10 +8,10 @@ const client = new BedrockRuntimeClient({ region: "us-west-2" });
 export async function POST(request) {
   const { ingredients, email } = await request.json();
 
+  const { ingredients, email } = await request.json();
+  const prompt = `Generate a recipe using these ingredients: ${ingredients}.`;
+  const modelId = "meta.llama3-1-8b-instruct-v1:0"
   try {
-
-    const prompt = `Generate a recipe using these ingredients. Make it relly really really long. At least 5 pages long: ${ingredients}.`;
-    const modelId = "meta.llama3-1-8b-instruct-v1:0"
     const input = {
       modelId,
       contentType: "application/json",
