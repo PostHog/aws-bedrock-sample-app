@@ -9,9 +9,11 @@ export async function POST(request) {
   const { ingredients, email } = await request.json();
 
   try {
-    const prompt = `Generate a recipe using these ingredients: ${ingredients}.`;
+
+    const prompt = `Generate a recipe using these ingredients. Make it relly really really long. At least 5 pages long: ${ingredients}.`;
+    const modelId = "meta.llama3-1-8b-instruct-v1:0"
     const input = {
-      modelId: "meta.llama3-1-8b-instruct-v1:0",
+      modelId,
       contentType: "application/json",
       accept: "application/json",
       body: JSON.stringify({
